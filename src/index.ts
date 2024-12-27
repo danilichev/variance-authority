@@ -34,17 +34,20 @@ const falsyToString = <T extends unknown>(value: T) =>
   typeof value === "boolean" ? `${value}` : value === 0 ? "0" : value;
 
 const getPropsWithoutUndefined = <P = Record<string, unknown>>(props: P) =>
-  Object.entries(props || {}).reduce((acc, [key, value]) => {
-    if (value === undefined) return acc;
+  Object.entries(props || {}).reduce(
+    (acc, [key, value]) => {
+      if (value === undefined) return acc;
 
-    acc[key] = value;
-    return acc;
-  }, {} as Record<string, unknown>);
+      acc[key] = value;
+      return acc;
+    },
+    {} as Record<string, unknown>,
+  );
 
 const mergeVariantsToArray = <T, CS extends ConfigSchema<T>>(
   config: Config<T, CS>,
   props: ConfigVariants<T, CS>,
-  extra?: T
+  extra?: T,
 ): T[] => {
   if (!config.variants)
     return [config.base, extra].flat().filter(Boolean) as T[];
@@ -72,7 +75,7 @@ const mergeVariantsToArray = <T, CS extends ConfigSchema<T>>(
     return Object.entries(val[0]).every(([key, value]) =>
       Array.isArray(value)
         ? value.includes(propsWithDefaults[key])
-        : propsWithDefaults[key] === value
+        : propsWithDefaults[key] === value,
     )
       ? ([...acc, val[1]] as T[])
       : acc;
@@ -86,7 +89,7 @@ const mergeVariantsToArray = <T, CS extends ConfigSchema<T>>(
 const mergeVariantsToObject = <T, CS extends ConfigSchema<T>>(
   config: Config<T, CS>,
   props: ConfigVariants<T, CS>,
-  extra?: T
+  extra?: T,
 ): T => {
   if (!config.variants)
     return getPropsWithoutUndefined({ ...config.base, ...(extra || {}) }) as T;
@@ -117,7 +120,7 @@ const mergeVariantsToObject = <T, CS extends ConfigSchema<T>>(
     return Object.entries(val[0]).every(([key, value]) =>
       Array.isArray(value)
         ? value.includes(propsWithDefaults[key])
-        : propsWithDefaults[key] === value
+        : propsWithDefaults[key] === value,
     )
       ? { ...acc, ...val[1] }
       : acc;
@@ -129,7 +132,7 @@ const mergeVariantsToObject = <T, CS extends ConfigSchema<T>>(
 const mergeVariantsToString = <T, CS extends ConfigSchema<T>>(
   config: Config<T, CS>,
   props: ConfigVariants<T, CS>,
-  extra?: T
+  extra?: T,
 ): T => {
   if (!config.variants)
     return [config.base, extra].filter(Boolean).join(" ") as T;
@@ -157,7 +160,7 @@ const mergeVariantsToString = <T, CS extends ConfigSchema<T>>(
     return Object.entries(val[0]).every(([key, value]) =>
       Array.isArray(value)
         ? value.includes(propsWithDefaults[key])
-        : propsWithDefaults[key] === value
+        : propsWithDefaults[key] === value,
     )
       ? `${acc} ${val[1]}`.trim()
       : acc;

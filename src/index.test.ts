@@ -14,7 +14,6 @@ describe("va function", () => {
       base: ["base-class1", "base-class2"],
     };
     const result = va(config)({});
-    console.log("result", result);
     expect(result).toEqual(["base-class1", "base-class2"]);
   });
 
@@ -264,7 +263,7 @@ it("should handle compound variants and extr prop with object base", () => {
   };
   const result = va(config)(
     { size: "small", color: "red" },
-    { colorKey: "purple" }
+    { colorKey: "purple" },
   );
   expect(result).toEqual({
     baseKey: "baseValue",
