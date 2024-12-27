@@ -14,7 +14,19 @@ export type Config<T, CS extends ConfigSchema<T>> = {
   variants?: CS;
 };
 
-export const va =
+interface VA {
+  <T, CS extends ConfigSchema<T>>(
+    config: Omit<Config<T, CS>, "base"> & { base: T },
+  ): (props: ConfigVariants<T, CS>, extra?: T) => T;
+}
+
+interface VA {
+  <T, CS extends ConfigSchema<T>, R = T[]>(
+    config: Omit<Config<T, CS>, "base"> & { base: T[] },
+  ): (props: ConfigVariants<T, CS>, extra?: T) => T[];
+}
+
+export const va: VA =
   <T, CS extends ConfigSchema<T>>(config: Config<T, CS>) =>
   (props: ConfigVariants<T, CS>, extra?: T) => {
     const { base } = config;
