@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "description": "Variance Authority",
   "main": "index.js",
-  "files": [
-    "lib/**/*"
-  ],
+  "files": ["lib/**/*"],
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib",
