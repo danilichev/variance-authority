@@ -1,9 +1,11 @@
 {
   "name": "variance-authority",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Variance Authority",
-  "main": "index.js",
-  "files": ["lib/**/*"],
+  "source": "./src/index.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": ["lib", "src", "!src/**/*.test.ts"],
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib",
