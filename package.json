@@ -1,6 +1,6 @@
 {
   "name": "variance-authority",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Variance Authority",
   "source": "./src/index.ts",
   "main": "./lib/index.js",
@@ -23,6 +23,10 @@
     "cva",
     "sva"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danilichev/variance-authority.git"
+  },
   "author": "V. Danilichev <v.danilichev@gmail.com> (https://github.com/danilichev)",
   "license": "MIT",
   "devDependencies": {
